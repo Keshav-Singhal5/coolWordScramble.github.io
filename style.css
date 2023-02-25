@@ -13,6 +13,10 @@ min-height:100vh;
 background-color:#15f4ee;
 overflow:hidden;
 }
+.pomper {
+    /* display: none; */
+    visibility: hidden;
+}
 .container{
 width:80vw;
 border-radius: 8px;
@@ -31,9 +35,9 @@ margin: 25px 20px 35px;
 }
 .container .word{
     color:#15f4ee;
-    font-size: 37px;
+    font-size: 6.5vw;
     font-weight: 600;
-    letter-spacing: 25px;
+    letter-spacing: 2.5vw;
     margin-right:-24px;
     text-align: center;
     text-transform: uppercase;
@@ -92,3 +96,14 @@ justify-content: space-between;
     color:#FF0000;
 
 }
+.congrats img{
+
+    width:183px;
+    display:block;
+    margin:0 auto;
+    max-width: 100%;
+    display:none;
+    
+    
+}
+

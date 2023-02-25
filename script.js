@@ -1,3 +1,4 @@
+
 const words=[
 {
     word: "garden",
@@ -80,6 +81,10 @@ const words=[
 
 }
 ];
+
+const img=document.querySelector(".congrats");
+const image=img.querySelector("img");
+
 const wordText=document.querySelector(".word");
 hintText=document.querySelector(".hint span");
 inputField=document.querySelector("input");
@@ -87,14 +92,16 @@ timeText=document.querySelector(".time b");
 refreshBtn=document.querySelector(".refresh_word");
 checkBtn=document.querySelector(".check_word");
 let correctWord,timer;
+let userWord=inputField.value.toLocaleLowerCase();
 const initTimer =maxTime=>{
+    clearInterval(timer);
 timer=setInterval(()=>{
 if(maxTime>0){
     maxTime--;
     return timeText.innerText=maxTime;
 }
 clearInterval(timer);
-alert(`TIME OUT! ${userWord.toUpperCase()} was the correct answer`);
+alert(`TIME OUT! ${correctWord.toUpperCase()} was the correct answer`);
 initGame();
 },1000);
 
@@ -103,6 +110,7 @@ initGame();
 const initGame = () => {
     initTimer(30);
 let randomObj=words[Math.floor(Math.random()* words.length)];
+// initTimer(30);
 let wordArray=randomObj.word.split("");
 // console.log(randomObj);
 for (let i = wordArray.length - 1; i > 0; i--) {
@@ -121,12 +129,45 @@ console.log(wordArray,randomObj.word);
 initGame();
 const checkWord=()=>{
 let userWord=inputField.value.toLocaleLowerCase();
+
 // console.log(userWord);
 if(!userWord) return alert( `Empty word is not allowed!`);
 if(userWord!==correctWord){
     return alert( `OOPs ${userWord} is not a correct word`);
 }
-return alert( `CONGRATULATIONS! ${userWord.toUpperCase()} is a CORRECT word`);
+
+    const stop = () => {
+      setTimeout(function () {
+        confetti.stop();
+      }, 4000);
+    };
+    const start = () => {
+        setTimeout(function () {
+          confetti.start();
+        }, 500);
+      };
+    start();
+    stop();
+
+setTimeout(() => {
+    initGame();
+}, 4000);
+// initGame();
+setTimeout(() => {
+    // image.classList.add("hidden");
+    // image.style.display='block';
+    image.style.display='none';
+ 
+}, 4000);
+image.style.display='block';
+// image.style.display="block";
+// img.classList.remove("hidden");
+//   return alert( `CONGRATULATIONS! ${userWord.toUpperCase()} is a CORRECT word`);
+    
+      
+
 }
+
 refreshBtn.addEventListener("click",initGame);
 checkBtn.addEventListener("click",checkWord);
+
